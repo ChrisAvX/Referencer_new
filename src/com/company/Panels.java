@@ -77,24 +77,29 @@ public class Panels {
 
         Cbutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String author = Ctextfield_1.getText();
+                try {
+                    String author = Ctextfield_1.getText();
                     author = author.split(" ")[1] + ", " + (author.split(" ")[0]).charAt(0) + ". ";
-                String date = Ctextfield_2.getText();
-                String title = Ctextfield_3.getText();
-                    title = " \"<i>"+title + "</i>\". ";
-                String publisher = Ctextfield_4.getText();
-                String addr = Ctextfield_5.getText();
+                    String date = Ctextfield_2.getText();
+                    String title = Ctextfield_3.getText();
+                    title = " \"<i>" + title + "</i>\". ";
+                    String publisher = Ctextfield_4.getText();
+                    String addr = Ctextfield_5.getText();
 
-                String accessed = Ctextfield_6.getText();
-                String full = author + date + title + publisher + ". [ONLINE] Available at: " + addr + " (Accessed: " + accessed + ")";
-                // The output string (used html tags for format)
-                //String to_return = author + ", (" + date + "). \"<i>" + title + "</i>\"." + publisher + ". [online] avaiable at: " + addr + ". Last accessed: " + accessed;
-                //System.out.println(to_return);
+                    String accessed = Ctextfield_6.getText();
+                    String full = author + date + title + publisher + ". [ONLINE] Available at: " + addr + " (Accessed: " + accessed + ")";
+                    // The output string (used html tags for format)
+                    //String to_return = author + ", (" + date + "). \"<i>" + title + "</i>\"." + publisher + ". [online] avaiable at: " + addr + ". Last accessed: " + accessed;
+                    //System.out.println(to_return);
 
 
-                // Method to create actusl reference   //
+                    // Method to create actusl reference   //
 
-                jep.setText("<div style=\"font-family:calibri;width:400px\">" + full + "</div>");
+                    jep.setText("<div style=\"font-family:calibri;width:400px\">" + full + "</div>");
+                }catch (Exception ex) {
+
+                    jep.setText("<div style=\"font-family:calibri;width:400px;color:red;\">Error</div>");
+                }
             }
         });
 
@@ -196,23 +201,24 @@ public class Panels {
 
         Cbutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String author = Ctextfield_1.getText();
-                author = author.split(" ")[1] + ", " + (author.split(" ")[0]).charAt(0) + ". ";
-                String date = Ctextfield_2.getText();
-                String title = Ctextfield_3.getText();
-                title = " \"<i>"+title + "</i>\". ";
-                String publisher = Ctextfield_4.getText();
-                String addr = Ctextfield_5.getText();
+
+                try {
+                    String author = Ctextfield_1.getText();
+                    author = author.split(" ")[1] + ", " + (author.split(" ")[0]).charAt(0) + ". ";
+                    String date = Ctextfield_2.getText();
+                    String title = Ctextfield_3.getText();
+                    title = " \"<i>" + title + "</i>\". ";
+                    String publisher = Ctextfield_4.getText();
+                    String addr = Ctextfield_5.getText();
 
 
+                    String full2 = author + date + title + publisher + ". Published in " + addr;
 
+                    jep.setText("<div style=\"font-family:calibri;width:400px\">" + full2 + "</div>");
 
-                String full2 = author + date + title + publisher + ". Published in " + addr;
-
-                jep.setText("<div style=\"font-family:calibri;width:400px\">"+full2+"</div>");
-
-                System.out.println(Ctextfield_1.getText() + " is the author");
-                Ctextfield_5.setText(Ctextfield_1.getText() + "\"" + Ctextfield_4.getText() + "\"");
+                } catch (Exception ex) {
+                    jep.setText("<div style=\"font-family:calibri;width:400px;color:red;\">Error</div>");
+                }
 
             }
         });

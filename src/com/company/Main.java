@@ -3,6 +3,8 @@ package com.company;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -133,7 +135,8 @@ public class Main extends Frame {
         jep.setText("<html><i>Your reference will be outputted here</i></html>");
 
         bottom.add(jep);
-
+        JButton copy = new JButton("Copy");
+        bottom.add(copy);
 
 
         //Add all panels to Frame and complete
@@ -157,7 +160,24 @@ public class Main extends Frame {
 
         // button ONCLICK events
 
+        copy.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String data = jep.getText();
+                String parse = data.replaceAll("<[^<>]+>([^<>]*)<[^<>]+>", "$1");
+                parse = parse.replaceAll("<br ?/>", "");
+                parse = parse.replaceAll("\n", "");
+                parse = parse.replaceAll("  ", "");
+                parse = parse.replaceAll("&quot;", "\"");
 
+                Toolkit toolkit = Toolkit.getDefaultToolkit();
+                Clipboard clipboard = toolkit.getSystemClipboard();
+                StringSelection strSel = new StringSelection(parse);
+                clipboard.setContents(strSel, null);
+
+                JOptionPane.showMessageDialog(null, "Reference copied to clipboard");
+
+            }
+        });
 
         btn_web.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
